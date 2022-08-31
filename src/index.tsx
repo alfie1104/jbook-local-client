@@ -31,6 +31,7 @@ const App = () => {
     //   target: "es2015",
     // });
 
+    iframe.current.srcdoc = html;
     const result = await ref.current.build({
       entryPoints: ["index.js"],
       bundle: true,
