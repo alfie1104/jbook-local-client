@@ -1,4 +1,5 @@
-import MonacoEditor, { EditorDidMount, monaco } from "@monaco-editor/react";
+import "./code-editor.css";
+import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import { useRef } from "react";
@@ -23,19 +24,21 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
     //get current value from editor
     const unformatted = editorRef.current.getModel().getValue();
     //format that value
-    const formatted = prettier.format(unformatted, {
-      parser: "babel",
-      plugins: [parser],
-      useTabs: false,
-      semi: true,
-      singleQuote: true,
-    });
+    const formatted = prettier
+      .format(unformatted, {
+        parser: "babel",
+        plugins: [parser],
+        useTabs: false,
+        semi: true,
+        singleQuote: true,
+      })
+      .replace(/\n$/, ""); //prettier의 format기능에 의해 자동으로 추가되는 new line을 제거
     //set the formatted value back in the editor
     editorRef.current.setValue(formatted);
   };
 
   return (
-    <div>
+    <div className="editor-wrapper">
       <button
         className="button button-format is-primary is-small"
         onClick={onFormatClick}
