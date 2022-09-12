@@ -32,8 +32,8 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
 
   useEffect(() => {
     iframe.current.srcdoc = html;
-
-    /*
+    setTimeout(() => {
+      /*
     postMessage 사용법
     - 문법 : targetWindow.postMessage(message, targetOrigin, [transfer]);
     targetWindow : 메세지를 전달 받을 window의 참조
@@ -42,7 +42,8 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
                   이벤트를 전송하려 할 때 targetWindow의 스키마, 호스트이름, 포트가 targetOrigin과 맞지 않다면 이벤트는 전송되지 않음
 
     */
-    iframe.current.contentWindow.postMessage(code, "*");
+      iframe.current.contentWindow.postMessage(code, "*");
+    }, 50);
   }, [code]);
 
   //Set sandbox property of iframe to "" or other things except "allow-same-origin"", to prevent direct access from and to parent HTML document.
