@@ -26,7 +26,7 @@ const reducer = produce((state: CellsState = initialState, action: Action) => {
       state.data[id].content = content;
       return;
     case ActionType.DELETE_CELL:
-      return;
+      break;
     case ActionType.MOVE_CELL:
       return;
     case ActionType.INSERT_CELL_BEFORE:
