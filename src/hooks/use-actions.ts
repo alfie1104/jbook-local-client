@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state";
@@ -13,5 +14,8 @@ export const useActions = () => {
   const { updateCell } = useActions(); //actionCreators에 updateCell을 생성해놨음
   updateCell(인자);  <-- 기존 dispatch(actionCreators.updateCell(인자))와 동일한 효과
   */
-  return bindActionCreators(actionCreators, dispatch);
+
+  return useMemo(() => {
+    return bindActionCreators(actionCreators, dispatch);
+  }, [dispatch]);
 };
