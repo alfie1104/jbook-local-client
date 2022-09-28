@@ -6,7 +6,7 @@ interface BundlesState {
   [key: string]: {
     loading: boolean;
     code: string;
-    error: string;
+    err: string;
   };
 }
 
@@ -18,7 +18,7 @@ const reducer = produce(
         state[action.payload.cellId] = {
           loading: true,
           code: "",
-          error: "",
+          err: "",
         };
         return state;
       case ActionType.BUNDLE_COMPLETE:

@@ -44,7 +44,7 @@ export interface BundleCompleteAction {
     cellId: string;
     bundle: {
       code: string;
-      error: string;
+      err: string;
     };
   };
 }
